@@ -525,6 +525,8 @@ before packages are loaded."
   (global-set-key [C-mouse-5] 'text-scale-decrease)
   ;; Compilation
   (global-set-key (kbd "<f5>") 'recompile)
+  ;; Terminal
+  (setq terminal-here-terminal-command (list "konsole"))
   ;; Web mode
   (setq js2-strict-missing-semi-warning nil)
   (setq js2-basic-offset 2
