@@ -82,7 +82,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(bash-completion)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -525,6 +525,13 @@ before packages are loaded."
   (global-set-key [C-mouse-5] 'text-scale-decrease)
   ;; Compilation
   (global-set-key (kbd "<f5>") 'recompile)
+  ;; Shell mode
+  (setq bash-completion-use-separate-processes nil)
+  (autoload 'bash-completion-dynamic-complete
+    "bash-completion"
+    "BASH completion hook")
+  (add-hook 'shell-dynamic-complete-functions
+            'bash-completion-dynamic-complete)
   ;; Terminal
   (setq terminal-here-terminal-command (list "konsole"))
   ;; Web mode
