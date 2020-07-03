@@ -576,6 +576,19 @@ before packages are loaded."
             (lambda () (text-scale-set 2)))
   (add-hook 'org-journal-mode-hook 'evil-insert-state)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "j" 'org-journal-new-entry)
+  ;;; Org Layout
+  (spacemacs|define-custom-layout "@Org"
+    :binding "o"
+    :body
+    (find-file "~/org/daily.org")
+    (text-scale-increase 1)
+    (split-window-right-and-focus)
+    (split-window-below)
+    (org-agenda-list 1)
+    (winum-select-window-3)
+    (find-file "~/org/todo.org")
+    (org-cycle)
+    (winum-select-window-2))
 
   ;; Magit
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
