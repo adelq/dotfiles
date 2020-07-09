@@ -82,7 +82,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(qml-mode bash-completion)
+   dotspacemacs-additional-packages '(qml-mode bash-completion git-auto-commit-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -592,6 +592,8 @@ before packages are loaded."
 
   ;; Magit
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
+  (setq gac-debounce-interval 60)
+  (setq gac-silent-message-p t)
   ;; Persistent undo mode
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-dir (concat spacemacs-cache-directory "undo"))
