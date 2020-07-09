@@ -72,6 +72,7 @@ This function should only modify configuration layer settings."
      csv
      (org :variables
           org-want-todo-bindings t
+          org-startup-indented t
           org-enable-org-journal-support t)
      )
 
@@ -558,8 +559,6 @@ before packages are loaded."
   (setq org-scheduled-past-days 30)
   ;;; Don't show deadline warning if already scheduled
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
-  ;;; Indent headings further than default
-  (add-hook 'org-mode-hook 'org-indent-mode)
   ;;; Capture
   (add-hook 'org-capture-mode-hook 'evil-insert-state)
   ;;; Pomodoro
