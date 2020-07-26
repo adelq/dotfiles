@@ -551,6 +551,8 @@ before packages are loaded."
   (setq comment-start "%")
   ;; Org mode
   (setq org-agenda-files (list "~/org/todo.org" "~/org/daily.org" "~/org/notes.org"))
+  ;;; Refile anywhere within the agenda
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   ;;; Lifesaver for window management
   (setq org-agenda-window-setup 'current-window)
   ;;; Only give 5 days advanced notice
