@@ -25,8 +25,12 @@ alias more='less'
 
 alias sac='source env/bin/activate'
 
-alias em='emacsclient -cn'
-alias et='emacsclient -t'
+em () {
+    emacsclient -cn "$@"
+}
+et () {
+    emacsclient -t "$@"
+}
 
 # Ruby
 alias bx='bundle exec'
