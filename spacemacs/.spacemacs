@@ -505,6 +505,8 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq custom-file "~/.emacs.d/.cache/.custom-settings")
   (load custom-file)
+  ;; Spacemacs general config
+  (setq winum-scope 'frame-local)
   )
 
 (defun dotspacemacs/user-load ()
@@ -532,7 +534,6 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd ";") 'evil-ex)
   ;; Spacemacs general config
   (setq dotspacemacs-whitespace-cleanup 'changed)
-  (setq winum-scope 'frame-local)
   (spacemacs/set-leader-keys "fv" 'revert-buffer)
   ;; Add C-scroll wheel for zoom
   (global-set-key [C-mouse-4] 'text-scale-increase)
