@@ -13,6 +13,8 @@ So far, I've included the following components:
 * Tmux
 * Vim
 * Spacemacs
+* Citrix
+* mpv
 
 ## Install
 
