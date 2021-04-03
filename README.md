@@ -15,6 +15,9 @@ So far, I've included the following components:
 * Spacemacs
 * Citrix
 * mpv
+* Emacs
+* npm
+* gem
 
 ## Install
 
