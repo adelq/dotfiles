@@ -646,14 +646,14 @@ before packages are loaded."
     :binding "o"
     :body
     (find-file "~/org/daily.org")
+    (outline-hide-sublevels 2)
     (text-scale-increase 1)
     (split-window-right-and-focus)
-    (split-window-below)
     (org-agenda-list 1)
-    (winum-select-window-3)
+    (split-window-below-and-focus)
     (find-file "~/org/todo.org")
-    (org-cycle)
-    (winum-select-window-2))
+    (outline-hide-sublevels 1)
+    (windmove-up))
 
   ;; Magit
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
