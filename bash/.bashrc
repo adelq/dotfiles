@@ -99,11 +99,11 @@ binstall(){
 
 # youtube-dl wrappers for downloading audio from youtube
 ytdl_playlist(){
-    youtube-dl --ignore-errors --no-overwrites --format 'bestaudio[ext=webm]' --add-metadata -o "%(playlist_index)s - %(title)s.opus" "$1"
+    yt-dlp --ignore-errors --no-overwrites --continue --format 'bestaudio[ext=webm]' --add-metadata -o "%(playlist_index)s - %(title)s.opus" "$1"
 }
 
 ytdl_audio(){
-    youtube-dl --format 'bestaudio[ext=webm]' --add-metadata -o '%(title)s.opus' "$1"
+    yt-dlp --format 'bestaudio[ext=webm]' --add-metadata -o '%(title)s.opus' "$1"
 }
 
 # Include environment variables
