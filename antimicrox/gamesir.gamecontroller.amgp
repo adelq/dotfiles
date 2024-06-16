@@ -213,7 +213,7 @@
                         <mode>keyboard</mode>
                     </slot>
                     <slot>
-                        <code>0x31</code>
+                        <code>0x32</code>
                         <mode>keyboard</mode>
                     </slot>
                 </slots>
