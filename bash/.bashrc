@@ -103,7 +103,8 @@ ytdl_playlist(){
 }
 
 ytdl_audio(){
-    yt-dlp --format 'bestaudio[ext=webm]' --add-metadata -o '%(title)s - $(uploader)s.opus' "$1"
+    yt-dlp --format 'bestaudio[ext=webm]' --add-metadata -o '%(title)s - %(uploader)s.opus' "$1"
+}
 }
 
 # Include environment variables
