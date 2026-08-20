@@ -16,3 +16,5 @@
 	hideCampaign = true
 [merge]
 	conflictStyle = diff3
+[init]
+	defaultBranch = master
