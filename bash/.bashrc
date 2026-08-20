@@ -105,6 +105,55 @@ ytdl_playlist(){
 ytdl_audio(){
     yt-dlp --format 'bestaudio[ext=webm]' --add-metadata -o '%(title)s - %(uploader)s.opus' "$1"
 }
+
+merge_videos() {
+    if [ "$#" -ne 1 ] || [ ! -d "$1" ]; then
+        echo "Usage: merge_videos <directory>"
+        return 1
+    fi
+
+    # Remove trailing slashes to get a clean directory name
+    local dir="${1%/}"
+
+    # Find the first video file to extract its file extension
+    local sample_file
+    sample_file=$(find "$dir" -maxdepth 1 -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.avi" -o -name "*.mpg" -o -name "*.mpeg" -o -name "*.mov" \) | head -n 1)
+
+    if [ -z "$sample_file" ]; then
+        echo "Error: No supported video files found in directory '$dir'."
+        return 1
+    fi
+
+    local ext="${sample_file##*.}"
+    local output_file="$(basename "$dir").${ext}"
+
+    # Create a unique temporary file
+    local list_file
+    list_file=$(mktemp /tmp/ffmpeg_concat.XXXXXX.txt) || return 1
+    trap 'rm -f "$list_file"' EXIT INT TERM
+
+    # Collect files, convert to absolute paths, sort naturally, and populate list file
+    find "$dir" -maxdepth 1 -type f -name "*.$ext" -exec realpath {} + | \
+        sort -V | \
+        while IFS= read -r file; do
+            local escaped_file
+            escaped_file=$(printf '%s' "$file" | sed "s/'/'\\\\''/g")
+            printf "file '%s'\n" "$escaped_file" >> "$list_file"
+        done
+
+    # --- DEBUG PRINTOUTS ---
+    echo "=== DEBUG INFO ==="
+    echo "Directory argument : $dir"
+    echo "Detected Extension : $ext"
+    echo "Output File        : $output_file"
+    echo "Temp Concat File   : $list_file"
+    echo "--- Concat File Contents ---"
+    cat "$list_file"
+    echo "=========================="
+    # -----------------------
+
+    # Run FFmpeg stream copy
+    ffmpeg -f concat -safe 0 -i "$list_file" -c copy "$output_file"
 }
 
 # Include environment variables
